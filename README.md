@@ -4,10 +4,10 @@ jqGuide is a jquery plugin that will  create a one page guide document from data
 Add the plugin js to your page after the jquery js script tag and add this code to the body of an HTML page.
 ```javascript
 $().jqguide({
-        jsonSourceFolder:"../assets/data/definitions/",
-        jsonSourceData:"functions.json",
-        parentItem:"body",
-        createNav:true,
-        showProgress:true
+        jsonSourceFolder:"data_folder",
+        jsonSourceData:"json_file",
+        parentItem:"html tag",
+        createNav:true,//boolean
+        showProgress:true//boolean
     });
 ```
