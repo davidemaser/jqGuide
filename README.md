@@ -7,7 +7,7 @@ Add the plugin js to your page after the jquery js script tag and add this code 
 $().jqguide({
         jsonSourceFolder:"data_folder",
         jsonSourceData:"json_file",
-        parentItem:"html tag",
+        parentItem:"tag",//i.e. body, #someID
         createNav:true,//boolean -- Do you want the plugin to create a left nav of all the items
         showProgress:true//boolean -- Shows a document scroll progress bar. Useful if you have a lot of data
     });
