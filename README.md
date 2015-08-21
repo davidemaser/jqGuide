@@ -3,6 +3,7 @@ jqGuide is a jquery plugin that will  create a one page guide document from data
 ###USE
 Add the plugin js to your page after the jquery js script tag and add this code to the body of an HTML page.
 ```javascript
+<script>
 $().jqguide({
         jsonSourceFolder:"data_folder",
         jsonSourceData:"json_file",
@@ -10,6 +11,7 @@ $().jqguide({
         createNav:true,//boolean -- Do you want the plugin to create a left nav of all the items
         showProgress:true//boolean -- Shows a document scroll progress bar. Useful if you have a lot of data
     });
+</script>
 ```
 ###JSON FORMAT
 Make sure your JSON file uses this format. Add more fields if you need and extend the extension to display them
