@@ -1,4 +1,6 @@
 # jqGuide
+####v0.2
+Created by David Maser
 jqGuide is a jquery plugin that will  create a one page guide document from data collected from a json source.
 ###USE
 Add the plugin js to your page after the jquery js script tag and add this code to the body of an HTML page.
