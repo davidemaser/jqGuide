@@ -1,5 +1,5 @@
-# jqGuide
-####v0.2
+# jqGuide#
+####v0.2####
 ---
 #####Created by David Maser#####
 MIT License
