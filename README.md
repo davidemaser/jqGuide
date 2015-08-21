@@ -7,8 +7,8 @@ $().jqguide({
         jsonSourceFolder:"data_folder",
         jsonSourceData:"json_file",
         parentItem:"html tag",
-        createNav:true,//boolean
-        showProgress:true//boolean
+        createNav:true,//boolean -- Do you want the plugin to create a left nav of all the items
+        showProgress:true//boolean -- Shows a document scroll progress bar. Useful if you have a lot of data
     });
 ```
 ###JSON FORMAT
