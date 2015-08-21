@@ -12,7 +12,7 @@ $().jqguide({
     });
 ```
 ###JSON FORMAT
-```javascript
+```json
 {
   "element":[
     {
@@ -39,4 +39,4 @@ $().jqguide({
     }
   ]
 }
-```javascript
+```
