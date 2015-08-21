@@ -11,41 +11,29 @@ $().jqguide({
         showProgress:true//boolean
     });
 ```
-```javascript
 ###JSON FORMAT
+```javascript
 {
   "element":[
     {
-      "name":"logChanges",
-      "action":"writes",
-      "scope":"utility",
-      "line":67,
-      "description":"Logs all changes brought to a handsontable instance",
+      "name":"element name",
+      "action":"action it executes",
+      "scope":"element scope",
+      "line":1,
+      "description":"Description here",
       "parameters":[
         {
-          "name":"change",
+          "name":"param",
           "value":"array",
-          "definition":"reads data from the handsontable change object",
-          "required":true
-        },
-        {
-          "name":"table",
-          "value":"string",
-          "definition":"text value of the table sending the log",
-          "required":true
-        },
-        {
-          "name":"method",
-          "value":"string",
-          "definition":"what method has sent the log data",
-          "required":true
+          "definition":"define what it does",
+          "required":boolean
         }
       ],
-      "returns":"array",
+      "returns":"what does it return",
       "dependencies":[
         {
-          "item":"change",
-          "type":"object"
+          "item":"another element",
+          "type":"element type"
         }
       ]
     }
