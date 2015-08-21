@@ -1,0 +1,1193 @@
+{
+  "element":[
+    {
+      "name":"logChanges",
+      "action":"writes",
+      "scope":"utility",
+      "line":67,
+      "description":"Logs all changes brought to a handsontable instance",
+      "parameters":[
+        {
+          "name":"change",
+          "value":"array",
+          "definition":"reads data from the handsontable change object",
+          "required":true
+        },
+        {
+          "name":"table",
+          "value":"string",
+          "definition":"text value of the table sending the log",
+          "required":true
+        },
+        {
+          "name":"method",
+          "value":"string",
+          "definition":"what method has sent the log data",
+          "required":true
+        }
+      ],
+      "returns":"array",
+      "dependencies":[
+        {
+          "item":"change",
+          "type":"object"
+        }
+      ]
+    },
+    {
+      "name":"showLogChanges",
+      "action":"outputs",
+      "scope":"utility",
+      "line":85,
+      "description":"Outputs the visual data of the log",
+      "parameters":null,
+      "returns":"html",
+      "dependencies":[
+        {
+          "item":"changeARR",
+          "type":"array"
+        }
+      ]
+    },
+    {
+      "name":"languageSwitcher",
+      "action":"dom rewrite",
+      "scope":"browser",
+      "line":120,
+      "description":"Resets the text value of multiple dom elements",
+      "parameters":[
+        {
+          "name":"lang",
+          "value":"string",
+          "definition":"two letter language value",
+          "required":true
+        }
+      ],
+      "returns":"html",
+      "dependencies":"documentLanguage"
+    },
+    {
+      "name":"setListeners",
+      "action":"dom events",
+      "scope":"browser",
+      "line":154,
+      "description":"Turns on or off handsontable listeners",
+      "parameters":null,
+      "returns":"function",
+      "dependencies":null
+    },
+    {
+      "name":"resetDataPagination",
+      "action":"loads json",
+      "scope":"data",
+      "line":174,
+      "description":"Reloads the data from the api with the offset value",
+      "parameters":[
+        {
+          "name":"offset",
+          "value":"numeric",
+          "definition":"page offset of the current view",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"loadData",
+          "type":"function"
+        },
+        {
+          "item":"loadPosData",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"getDataValue",
+      "action":"loads json",
+      "scope":"data",
+      "line":206,
+      "description":"Resets the text value of multiple dom elements",
+      "parameters":[
+        {
+          "name":"source",
+          "value":"string",
+          "definition":"string corresponding to the json file without the .json",
+          "required":true
+        }
+      ],
+      "returns":"object json",
+      "dependencies":[
+        {
+          "item":"JQUERY.ajax",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"getOjectID",
+      "action":"returns array",
+      "scope":"data",
+      "line":227,
+      "description":"Outputs the handsontable column header values",
+      "parameters":[
+        {
+          "name":"elem",
+          "value":"numeric",
+          "definition":"Current views line ID",
+          "required":true
+        }
+      ],
+      "returns":"string",
+      "dependencies":[
+        {
+          "item":"JSON.stringify",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"colTitleMapping",
+      "action":"extracts value",
+      "scope":"data",
+      "line":240,
+      "description":"Gets the line items ID value from the tables source json data",
+      "parameters":[
+        {
+          "name":"object",
+          "value":"string",
+          "definition":"Can be pos or pos_items. Sorts data returned",
+          "required":true
+        },
+        {
+          "name":"value",
+          "value":"numeric",
+          "definition":"Not Used",
+          "required":false
+        }
+      ],
+      "returns":"array",
+      "dependencies":[
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        }
+      ]
+    },
+    {
+      "name":"loadUrl",
+      "action":"returns string",
+      "scope":"core",
+      "line":329,
+      "description":"Outputs the server api URL to be used by other ajax functions",
+      "parameters":[
+        {
+          "name":"apiURL",
+          "value":"string",
+          "definition":"What environment are we on. Can be dev, local or local-dev",
+          "required":true
+        }
+      ],
+      "returns":"string",
+      "dependencies":null
+    },
+    {
+      "name":"reloadView",
+      "action":"invokes function",
+      "scope":"core",
+      "line":353,
+      "description":"Resets the current views data by relaunching the load function for the active tab",
+      "parameters":[
+        {
+          "name":"advise",
+          "value":"boolean",
+          "definition":"Indicates whether to alert the user with a modal.",
+          "required":false
+        }
+      ],
+      "returns":null,
+      "dependencies":[
+        {
+          "item":"activeTab",
+          "type":"variable"
+        }
+      ]
+    },
+    {
+      "name":"renderBackbone",
+      "action":"reformats json",
+      "scope":"data",
+      "line":372,
+      "description":"Removes the initial object definitin from the backbone collection data",
+      "parameters":[
+        {
+          "name":"data",
+          "value":"object json",
+          "definition":"Data object",
+          "required":true
+        }
+      ],
+      "returns":"json",
+      "dependencies":[
+        {
+          "item":"JSON.stringify",
+          "type":"component"
+        },
+        {
+          "item":"JSON.parse",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"loadData",
+      "action":"loads json",
+      "scope":"data",
+      "line":385,
+      "description":"load data into the initial POS table",
+      "parameters":[
+        {
+          "name":"limit",
+          "value":"numeric",
+          "definition":"numeric value of the max number of items to fetch",
+          "required":true
+        },
+        {
+          "name":"reset",
+          "value":"boolean",
+          "definition":"when executing the function, is the table being reset or reloaded",
+          "required":true
+        }
+      ],
+      "returns":"json",
+      "dependencies":[
+        {
+          "item":"colTitleMapping",
+          "type":"function"
+        },
+        {
+          "item":"getRowData",
+          "type":"function"
+        },
+        {
+          "item":"getDataValue",
+          "type":"function"
+        },
+        {
+          "item":"logChanges",
+          "type":"function"
+        },
+        {
+          "item":"formatJSONresponse",
+          "type":"function"
+        },
+        {
+          "item":"saveData",
+          "type":"function"
+        },
+        {
+          "item":"reloadView",
+          "type":"function"
+        },
+        {
+          "item":"deleteData",
+          "type":"function"
+        },
+        {
+          "item":"locStor",
+          "type":"function"
+        },
+        {
+          "item":"throwMessage",
+          "type":"function"
+        },
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        }
+      ]
+    },
+    {
+      "name":"loadPosData",
+      "action":"loads json",
+      "scope":"data",
+      "line":652,
+      "description":"Loads the POS Item data into new handsontable data instances",
+      "parameters":[
+        {
+          "name":"limit",
+          "value":"numeric",
+          "definition":"numeric value of the max number of items to fetch",
+          "required":true
+        },
+        {
+          "name":"iD",
+          "value":"numeric",
+          "definition":"numeric value of the POS Item being fetched",
+          "required":true
+        },
+        {
+          "name":"table",
+          "value":"string",
+          "definition":"id of the table where the data will be rendered",
+          "required":true
+        },
+        {
+          "name":"create",
+          "value":"boolean",
+          "definition":"Is this the initial creation of the data table or should it be reloaded",
+          "required":true
+        }
+      ],
+      "returns":"json",
+      "dependencies":[
+        {
+          "item":"colTitleMapping",
+          "type":"function"
+        },
+        {
+          "item":"getRowData",
+          "type":"function"
+        },
+        {
+          "item":"getOjectID",
+          "type":"function"
+        },
+        {
+          "item":"addDummyData",
+          "type":"function"
+        },
+        {
+          "item":"logChanges",
+          "type":"function"
+        },
+        {
+          "item":"changeSearchHandle",
+          "type":"function"
+        },
+        {
+          "item":"formatJSONresponse",
+          "type":"function"
+        },
+        {
+          "item":"saveData",
+          "type":"function"
+        },
+        {
+          "item":"reloadView",
+          "type":"function"
+        },
+        {
+          "item":"deleteData",
+          "type":"function"
+        },
+        {
+          "item":"locStor",
+          "type":"function"
+        },
+        {
+          "item":"throwMessage",
+          "type":"function"
+        },
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        },
+        {
+          "item":"initPagination",
+          "type":"function"
+        },
+        {
+          "item":"togglePagination",
+          "type":"function"
+        },
+        {
+          "item":"manageTabs",
+          "type":"function"
+        },
+        {
+          "item":"reOpenTabs",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"loadSettings",
+      "action":"loads local storage",
+      "scope":"core",
+      "line":864,
+      "description":"Loads app settings from Local Storage object",
+      "parameters":[
+        {
+          "name":"toggleGutter",
+          "value":"boolean",
+          "definition":"Defines whether the gutter needs to be toggled when the function is called",
+          "required":true
+        }
+      ],
+      "returns":"html",
+      "dependencies":[
+        {
+          "item":"locStor",
+          "type":"function"
+        },
+        {
+          "item":"languageSwitcher",
+          "type":"function"
+        },
+        {
+          "item":"genModal",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"cleanArray",
+      "action":"reformats array",
+      "scope":"utility",
+      "line":913,
+      "description":"Removes null values from an array",
+      "parameters":[
+        {
+          "name":"actual",
+          "value":"array",
+          "definition":"Array to be cleaned",
+          "required":true
+        }
+      ],
+      "returns":"array",
+      "dependencies":null
+    },
+    {
+      "name":"removeNodeFromObject",
+      "action":"reformats json",
+      "scope":"utility",
+      "line":930,
+      "description":"Removes unwanted nodes from a json object",
+      "parameters":[
+        {
+          "name":"obj",
+          "value":"object",
+          "definition":"The JSON object that has to be reformated",
+          "required":true
+        },
+        {
+          "name":"objSource",
+          "value":"string",
+          "definition":"The dom source of the data.",
+          "required":true
+        }
+      ],
+      "returns":"object json",
+      "dependencies":null
+    },
+    {
+      "name":"formatJSONresponse",
+      "action":"reformats json",
+      "scope":"data",
+      "line":951,
+      "description":"Reformats JSON object to adhere to API guidelines",
+      "parameters":[
+        {
+          "name":"table",
+          "value":"string",
+          "definition":"The handsontable instance from which we are getting the data",
+          "required":true
+        },
+        {
+          "name":"obj",
+          "value":"object",
+          "definition":"The actual data object",
+          "required":true
+        }
+      ],
+      "returns":"object json",
+      "dependencies":[
+        {
+          "item":"JSON.stringify",
+          "type":"component"
+        },
+        {
+          "item":"JSON.parse",
+          "type":"component"
+        },
+        {
+          "item":"removeNodeFromObject",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"getRowData",
+      "action":"collects data",
+      "scope":"data",
+      "line":970,
+      "description":"Collects the source data at a specific handsontable instance row",
+      "parameters":[
+        {
+          "name":"table",
+          "value":"string",
+          "definition":"The handsontable instance from which we are getting the data",
+          "required":true
+        },
+        {
+          "name":"row",
+          "value":"numeric",
+          "definition":"The row where the selection has been made",
+          "required":true
+        },
+        {
+          "name":"method",
+          "value":"string",
+          "definition":"Can be update or flush. Update executes the function and flush emptys the array",
+          "required":true
+        },
+        {
+          "name":"itemID",
+          "value":"numeric",
+          "definition":"The item ID of the handsontable line item",
+          "required":true
+        }
+      ],
+      "returns":"array",
+      "dependencies":[
+        {
+          "item":"formatJSONresponse",
+          "type":"function"
+        },
+        {
+          "item":"saveData",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"deleteData",
+      "action":"deletes data",
+      "scope":"data",
+      "line":1024,
+      "description":"Executes the API delete method and removes pos or poItems",
+      "parameters":[
+        {
+          "name":"type",
+          "value":"string",
+          "definition":"The type of handsontable instance currently being deleted. Can be posItem or pos",
+          "required":true
+        },
+        {
+          "name":"itemID",
+          "value":"numeric",
+          "definition":"The ID of the line item to be deleted",
+          "required":true
+        },
+        {
+          "name":"parent",
+          "value":"string",
+          "definition":"Used to identify the parent dom object to apply the loader layer to",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        },
+        {
+          "item":"progressTab",
+          "type":"variable"
+        }
+      ]
+    },
+    {
+      "name":"saveData",
+      "action":"updates data",
+      "scope":"data",
+      "line":1073,
+      "description":"Executes the API put method and updates pos or poItems",
+      "parameters":[
+        {
+          "name":"table",
+          "value":"string",
+          "definition":"The handsontable instance from which we are getting the data",
+          "required":true
+        },
+        {
+          "name":"obj",
+          "value":"object",
+          "definition":"The data object being passed to the function",
+          "required":true
+        },
+        {
+          "name":"mode",
+          "value":"string",
+          "definition":"The mode being passed to the ajax function. Usually PUT",
+          "required":false
+        },
+        {
+          "name":"qs",
+          "value":"string",
+          "definition":"The querystring value to append to the api url",
+          "required":false
+        },
+        {
+          "name":"itemID",
+          "value":"numeric",
+          "definition":"The ID of the line being updated",
+          "required":true
+        },
+        {
+          "name":"recode",
+          "value":"boolean",
+          "definition":"Defines whether we need to recode the object to remove object definitions",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"JSON.stringify",
+          "type":"component"
+        },
+        {
+          "item":"formatJSONresponse",
+          "type":"function"
+        },
+        {
+          "item":"devLogger",
+          "type":"function"
+        },
+        {
+          "item":"Date",
+          "type":"prototype"
+        },
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        },
+        {
+          "item":"throwMessage",
+          "type":"function"
+        },
+        {
+          "item":"getRowData",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"addDummyData",
+      "action":"writes json",
+      "scope":"core",
+      "line":1223,
+      "description":"Injects dummy JSON data into a line item",
+      "parameters":null,
+      "returns":"json object",
+      "dependencies":null
+    },
+    {
+      "name":"updateScroll",
+      "action":"dom modification",
+      "scope":"browser",
+      "line":1255,
+      "description":"Scrolls the message window to the last added item",
+      "parameters":null,
+      "returns":"html",
+      "dependencies":null
+    },
+    {
+      "name":"locStor",
+      "action":"reads/writes localStorage",
+      "scope":"core",
+      "line":1264,
+      "description":"Reads or writes localStorage object items",
+      "parameters":[
+        {
+          "name":"method",
+          "value":"string",
+          "definition":"Defines whether to read or to write the localStorage object",
+          "required":true
+        },
+        {
+          "name":"elem",
+          "value":"string",
+          "definition":"The element item definition name (i.e. PIMSettings-SomeName)",
+          "required":true
+        },
+        {
+          "name":"value",
+          "value":"string",
+          "definition":"The value to be given to the local storage object",
+          "required":true
+        }
+      ],
+      "returns":"dom object",
+      "dependencies":[
+        {
+          "item":"localStorage",
+          "type":"component"
+        },
+        {
+          "item":"initSettings",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"initSettings",
+      "action":"reads localStorage",
+      "scope":"core",
+      "line":1287,
+      "description":"Reads or writes localStorage object items",
+      "parameters":[
+        {
+          "name":"item",
+          "value":"string",
+          "definition":"Defines which local storage object to read from",
+          "required":true
+        },
+        {
+          "name":"value",
+          "value":"string",
+          "definition":"The value expected",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":null
+    },
+    {
+      "name":"toggleSettings",
+      "action":"reads localStorage",
+      "scope":"data",
+      "line":1363,
+      "description":"changes the setting values in localstorage when the corresponding form element is updated",
+      "parameters":[
+        {
+          "name":"item",
+          "value":"string",
+          "definition":"Defines which local storage object to read from",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"locStor",
+          "type":"function"
+        },
+        {
+          "item":"loadData",
+          "type":"function"
+        },
+        {
+          "item":"loadPosData",
+          "type":"function"
+        },
+        {
+          "item":"languageSwitcher",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"initPagination",
+      "action":"writes html",
+      "scope":"browser",
+      "line":1287,
+      "description":"Creates a pagination object, linked to the loaded handsontable instance in the browser view",
+      "parameters":[
+        {
+          "name":"min",
+          "value":"numeric",
+          "definition":"The starting record point",
+          "required":true
+        },
+        {
+          "name":"max",
+          "value":"numeric",
+          "definition":"The maximum number of records displayed",
+          "required":true
+        },
+        {
+          "name":"units",
+          "value":"numeric",
+          "definition":"The total number of records returned by the api",
+          "required":true
+        },
+        {
+          "name":"parent",
+          "value":"string",
+          "definition":"The parent dom object to which the pagination object will be linked",
+          "required":true
+        }
+      ],
+      "returns":"dom object",
+      "dependencies":null
+    },
+    {
+      "name":"manageTabs",
+      "action":"writes array",
+      "scope":"data",
+      "line":1480,
+      "description":"writes or reads the active tabs to enable a history function and the loading of last open tabs",
+      "parameters":[
+        {
+          "name":"method",
+          "value":"string",
+          "definition":"Should the function read or write the localStorage item",
+          "required":true
+        }
+      ],
+      "returns":"array",
+      "dependencies":[
+        {
+          "item":"locStor",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"reOpenTabs",
+      "action":"writes html",
+      "scope":"data",
+      "line":1480,
+      "description":"writes or reads the active tabs to enable a history function and the loading of last open tabs",
+      "parameters":[
+        {
+          "name":"quick",
+          "value":"boolean",
+          "definition":"Determines whether the function will do a quick cycle of the tabs or create/recreate each tab",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"loadData",
+          "type":"function"
+        },
+        {
+          "item":"parseInt",
+          "type":"component"
+        },
+        {
+          "item":"locStor",
+          "type":"function"
+        },
+        {
+          "item":"loadPosData",
+          "type":"function"
+        },
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        }
+      ]
+    },
+    {
+      "name":"buildNavigation",
+      "action":"writes html",
+      "scope":"data",
+      "line":1549,
+      "description":"builds the gutter navigation from a json file",
+      "parameters":[
+        {
+          "name":"omit",
+          "value":"boolean",
+          "definition":"Not implemented yet",
+          "required":false
+        },
+        {
+          "name":"userType",
+          "value":"string",
+          "definition":"Not implemented yet",
+          "required":false
+        }
+      ],
+      "returns":"html",
+      "dependencies":[
+        {
+          "item":"JQUERY.ajax",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"gutterToggle",
+      "action":"animates html",
+      "scope":"browser",
+      "line":1570,
+      "description":"function open and closes the left gutter",
+      "parameters":[
+        {
+          "name":"speedIn",
+          "value":"numeric",
+          "definition":"The duration of the open animation",
+          "required":true
+        },
+        {
+          "name":"speedOut",
+          "value":"numeric",
+          "definition":"The duration of the close animation",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"JQUERY.animate",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"togglePagination",
+      "action":"dom modification",
+      "scope":"browser",
+      "line":1599,
+      "description":"changes the active pagination item when tab is pressed",
+      "parameters":[
+        {
+          "name":"elem",
+          "value":"string",
+          "definition":"The name of the element being acted upon",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":null
+    },
+    {
+      "name":"destroyChildPagination",
+      "action":"dom modification",
+      "scope":"browser",
+      "line":1615,
+      "description":"destroys the child pagination element when the parent table is closed",
+      "parameters":[
+        {
+          "name":"item",
+          "value":"string",
+          "definition":"The name of the handsontable instance",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":null
+    },
+    {
+      "name":"destroyTable",
+      "action":"dom modification",
+      "scope":"core",
+      "line":1623,
+      "description":"destroys the table when the user clicks on the tab X. This also fires the function to destroy the pagination object",
+      "parameters":[
+        {
+          "name":"item",
+          "value":"string",
+          "definition":"The tab item linked to the handsontable instance",
+          "required":true
+        },
+        {
+          "name":"elem",
+          "value":"string",
+          "definition":"The name of the handsontable instance",
+          "required":true
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"destroyChildPagination",
+          "type":"function"
+        },
+        {
+          "item":"changeSearchHandle",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"setTabWidth",
+      "action":"dom modification",
+      "scope":"browser",
+      "line":1648,
+      "description":"sets the tab holder div's width value to allow multiple tabs to be opened in a horizontally scrollable format",
+      "parameters":null,
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"eval",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"genModal",
+      "action":"writes html",
+      "scope":"browser",
+      "line":1661,
+      "description":"generates a modal based on attributes passed in the call. Can also fire other functions by passing the function  name in the call object",
+      "parameters":[
+        {
+          "name":"type",
+          "value":"string",
+          "definition":"The type of modal to create. Can be form or null",
+          "required":false
+        },
+        {
+          "name":"formData",
+          "value":"string",
+          "definition":"The formdata if the type selected is form",
+          "required":false
+        },
+        {
+          "name":"title",
+          "value":"string",
+          "definition":"The modal title value",
+          "required":true
+        },
+        {
+          "name":"body",
+          "value":"string",
+          "definition":"TThe modal body value",
+          "required":true
+        },
+        {
+          "name":"cta",
+          "value":"string",
+          "definition":"The call to action type. Can be prompt or chose",
+          "required":true
+        },
+        {
+          "name":"labels",
+          "value":"string",
+          "definition":"The text labels for the CTA buttons",
+          "required":true
+        },
+        {
+          "name":"call",
+          "value":"function",
+          "definition":"An optional function to be executed when the user clicks on the modal prompt",
+          "required":false
+        },
+        {
+          "name":"warning",
+          "value":"boolean",
+          "definition":"Adds a visual color cue on the modal element",
+          "required":false
+        }
+      ],
+      "returns":"dom object",
+      "dependencies":null
+    },
+    {
+      "name":"devLogger",
+      "action":"writes html",
+      "scope":"utility",
+      "line":1720,
+      "description":"creates a log of the data returned by a specific function or action. Change the value of the devLog variable to true or false to activate or deactivate the log",
+      "parameters":[
+        {
+          "name":"working",
+          "value":"boolean",
+          "definition":"Defines whether to activate the Dev Logger",
+          "required":false
+        },
+        {
+          "name":"message",
+          "value":"string",
+          "definition":"The message to be passed to the log",
+          "required":false
+        },
+        {
+          "name":"element",
+          "value":"string",
+          "definition":"The active function or item where the logger was initiated",
+          "required":true
+        },
+        {
+          "name":"initializer",
+          "value":"string",
+          "definition":"The action that launched the logger",
+          "required":true
+        },
+        {
+          "name":"dataDump",
+          "value":"boolean",
+          "definition":"Defines whether to dump data to the log",
+          "required":true
+        },
+        {
+          "name":"tostring",
+          "value":"boolean",
+          "definition":"Defines whether to stringify the data collected",
+          "required":true
+        }
+      ],
+      "returns":"dom object",
+      "dependencies":[
+        {
+          "item":"JSON.stringify",
+          "type":"component"
+        }
+      ]
+    },
+    {
+      "name":"throwMessage",
+      "action":"writes html",
+      "scope":"utility",
+      "line":1754,
+      "description":"adds a message to the message (log) pane based on object parameters",
+      "parameters":[
+        {
+          "name":"mode",
+          "value":"string",
+          "definition":"Message mode. Can be new or error",
+          "required":false
+        },
+        {
+          "name":"message",
+          "value":"string",
+          "definition":"The message to be passed to the log",
+          "required":false
+        },
+        {
+          "name":"type",
+          "value":"string",
+          "definition":"The function type that called this function. Can be load or save",
+          "required":true
+        }
+      ],
+      "returns":"dom object",
+      "dependencies":[
+        {
+          "item":"updateScroll",
+          "type":"function"
+        }
+      ]
+    },
+    {
+      "name":"changeSearchHandle",
+      "action":"dom modification",
+      "scope":"utility",
+      "line":1785,
+      "description":"Function changes the search field placeholder to identify which table is being searched by the search functionality",
+      "parameters":[
+        {
+          "name":"elem",
+          "value":"string",
+          "definition":"The handsontable instance",
+          "required":false
+        }
+      ],
+      "returns":"function",
+      "dependencies":[
+        {
+          "item":"documentLanguage",
+          "type":"variable"
+        }
+      ]
+    }
+  ]
+}
