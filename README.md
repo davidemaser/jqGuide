@@ -1,8 +1,8 @@
 # jqGuide#
 ####v0.2####
 ---
-#####Created by David Maser#####
-MIT License
+#####Created by David Maser
+#######MIT License
 ---
 
 jqGuide is a jquery plugin that will  create a one page guide document from data collected from a json source.
