@@ -1,7 +1,7 @@
 # jqGuide
 ####v0.2
 ---
-#####Created by David Maser
+#####Created by David Maser#####
 MIT License
 ---
 
