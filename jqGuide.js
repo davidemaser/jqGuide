@@ -13,15 +13,15 @@
 function markProgress(){
 
 }
-(function ( $ ) {
-    $.fn.jqguide = function( options ) {
+(function ($) {
+    $.fn.jqguide = function (options) {
         var settings = $.extend({
             jsonSourceFolder:null,
             jsonSourceData: null,
             parentItem: null,
             createNav:false,
             showProgress:true
-        }, options );
+        }, options);
         $(settings.parentItem).on('click','.nav-line',function(){
             window.location=$(this).data('link'); return false;
         });
@@ -63,7 +63,7 @@ function markProgress(){
         htmlObj += '</section>';
         $(settings.parentItem).append(htmlObj);
         $.ajax({
-            url: settings.jsonSourceFolder+settings.jsonSourceData,
+            url: settings.jsonSourceFolder+'/'+settings.jsonSourceData,
             dataType: 'json',
             method: 'GET',
             success: function (data) {

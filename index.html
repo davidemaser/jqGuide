@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/gen-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="jqGuide.js"></script>
+</head>
+<body>
+<script>
+    $().jqguide({
+        jsonSourceFolder:"data",
+        jsonSourceData:"functions.json",
+        parentItem:"body",//i.e. body, #someID
+        createNav:true,//boolean -- Do you want the plugin to create a left nav of all the items
+        showProgress:true//boolean -- Shows a document scroll progress bar. Useful if you have a lot of data
+    });
+</script>
+</body>
+</html>
